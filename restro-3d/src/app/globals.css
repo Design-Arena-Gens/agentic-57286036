@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --background: #05060f;
+  --foreground: #ffffff;
+  --surface: #0b0d1a;
+  --surface-soft: rgba(23, 29, 58, 0.45);
+  --accent: #ffaa4c;
+  --accent-strong: #ff7b3f;
+  --glow: rgba(255, 170, 76, 0.5);
+  --focus-ring: rgba(250, 192, 120, 0.45);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+}
+
+body {
+  min-height: 100vh;
+  background:
+      radial-gradient(80% 140% at 10% 10%, rgba(31, 89, 209, 0.28), transparent),
+      radial-gradient(70% 120% at 90% 0%, rgba(246, 114, 128, 0.2), transparent),
+      radial-gradient(60% 90% at 50% 80%, rgba(200, 144, 255, 0.12), transparent),
+      var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+::selection {
+  background: rgba(255, 170, 76, 0.35);
+  color: white;
+}
+
+.glass-panel {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(140deg, rgba(39, 49, 95, 0.8), rgba(13, 18, 43, 0.92));
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow:
+    0 20px 60px rgba(15, 18, 45, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 55%);
+  pointer-events: none;
+}
+
+.glow-ring {
+  position: relative;
+}
+
+.glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 170, 76, 0.38), rgba(86, 145, 255, 0.35));
+  filter: blur(18px);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.soft-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(15, 18, 45, 0.35);
+}
+
+.soft-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 170, 76, 0.75), rgba(123, 167, 255, 0.7));
+  border-radius: 999px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
